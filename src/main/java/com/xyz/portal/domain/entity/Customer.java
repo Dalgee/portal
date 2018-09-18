@@ -5,6 +5,7 @@ import lombok.ToString;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.Date;
 import java.util.List;
 
 @Entity
@@ -33,6 +34,14 @@ public class Customer implements Serializable {
 
     @Column(name="email_verified", nullable=false)
     private boolean emailVerified;
+
+
+    @Column(name="created_date", nullable=false)
+    private Date createdDate;
+
+
+    @Column(name="last_login_date", nullable=false)
+    private Date lastLoginDate;
 
 
     @Column(name="phone_number")

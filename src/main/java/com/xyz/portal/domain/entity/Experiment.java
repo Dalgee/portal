@@ -37,13 +37,13 @@ public class Experiment implements Serializable {
 
 
     @JsonIgnore
-    @Column(name="timeout_date", nullable=false)
-    private Date timeoutDate;
+    @Column(name="expire_date", nullable=false)
+    private Date expireDate;
 
 
     @JsonIgnore
-    @Column(name="terminated_date")
-    private Date terminatedDate;
+    @Column(name="terminate_date")
+    private Date terminateDate;
 
 
     @JsonIgnore
@@ -74,6 +74,7 @@ public class Experiment implements Serializable {
         VISITOR_EXCEED,     // VISITOR Batch에 의해 변경 됨
         STOP,               // 실험 중지 (어떤 이벤트도 발생시키지 않는다, 상태 변경 가능하다. 유저가 변경 가능)
         TERMINATED,         // 실험 종료 (어떤 상태로도 변경 불가하다. 빌링 대상이된다.)
-        DELETE
+        ERRORED,            // 장애에 의해 실험이 블록된 상태, 빌링 하지 않는다.
+        DELETE              // 화면에 노출되지 않는다.
     }
 }
