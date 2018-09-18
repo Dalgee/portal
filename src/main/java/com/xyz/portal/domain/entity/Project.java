@@ -1,4 +1,4 @@
-package com.xyz.portal.entity;
+package com.xyz.portal.domain.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
@@ -6,7 +6,6 @@ import lombok.ToString;
 
 import javax.persistence.*;
 import java.io.Serializable;
-import java.util.Collections;
 import java.util.List;
 
 @Entity
@@ -16,9 +15,10 @@ import java.util.List;
 public class Project implements Serializable {
 
     @Id
-    @GeneratedValue(strategy=GenerationType.AUTO)
+    @GeneratedValue(strategy=GenerationType.IDENTITY)
     @Column(name="project_id")
     private long projectId;
+
 
     @JsonIgnore
     @ManyToOne
@@ -27,5 +27,5 @@ public class Project implements Serializable {
 
 
     @OneToMany(mappedBy="project", fetch=FetchType.EAGER)
-    private List<Experiment> experimentList = Collections.emptyList();
+    private List<Experiment> experimentList;
 }

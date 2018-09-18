@@ -1,4 +1,4 @@
-package com.xyz.portal.entity;
+package com.xyz.portal.domain.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
@@ -14,7 +14,7 @@ import java.io.Serializable;
 public class Contract implements Serializable {
 
     @Id
-    @GeneratedValue(strategy=GenerationType.AUTO)
+    @GeneratedValue(strategy=GenerationType.IDENTITY)
     @Column(name="contract_id")
     private long contractId;
 

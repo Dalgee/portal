@@ -1,6 +1,6 @@
 package com.xyz.portal.controller;
 
-import com.xyz.portal.entity.Customer;
+import com.xyz.portal.domain.entity.Customer;
 import com.xyz.portal.repository.CustomerRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
@@ -13,8 +13,12 @@ import java.util.List;
 @RestController
 public class CustomerController {
 
+    private final CustomerRepository customerRepository;
+
     @Autowired
-    private CustomerRepository customerRepository;
+    public CustomerController(CustomerRepository customerRepository) {
+        this.customerRepository = customerRepository;
+    }
 
 
     @GetMapping("/")

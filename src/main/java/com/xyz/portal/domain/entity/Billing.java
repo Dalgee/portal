@@ -1,11 +1,10 @@
-package com.xyz.portal.entity;
+package com.xyz.portal.domain.entity;
 
 import lombok.Data;
 import lombok.ToString;
 
 import javax.persistence.*;
 import java.io.Serializable;
-import java.util.Collections;
 import java.util.List;
 
 @Entity
@@ -15,21 +14,22 @@ import java.util.List;
 public class Billing implements Serializable {
 
     @Id
-    @GeneratedValue(strategy=GenerationType.AUTO)
+    @GeneratedValue(strategy=GenerationType.IDENTITY)
     @Column(name="billing_id")
     private long billingId;
 
 
     @Enumerated(EnumType.STRING)
     @Column(name="status", nullable=false)
-    private Status status = Status.SUBMITTED;
+    private Status status;
 
 
     @OneToMany(mappedBy="billing", fetch = FetchType.EAGER)
-    private List<Experiment> experimentList = Collections.emptyList();
+    private List<Experiment> experimentList;
 
 
     public enum Status {
+        CREATED,
         SUBMITTED,
         COMPLETE
     }
