@@ -1,5 +1,6 @@
 package com.xyz.portal.domain.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
 import lombok.ToString;
 
@@ -11,9 +12,10 @@ import java.util.List;
 @Entity
 @Data
 @ToString
-@Table(name="customer")
+@Table(name="customer", uniqueConstraints={@UniqueConstraint(columnNames="login_id"), @UniqueConstraint(columnNames="email")})
 public class Customer implements Serializable {
 
+    @JsonIgnore
     @Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)
     @Column(name="customer_id")
@@ -24,7 +26,8 @@ public class Customer implements Serializable {
     private String loginId;
 
 
-    @Column(name="encryped_password", nullable=false)
+    @JsonIgnore
+    @Column(name="encrypted_password", nullable=false)
     private String encryptedPassword;
 
 
@@ -32,8 +35,14 @@ public class Customer implements Serializable {
     private String email;
 
 
+    @JsonIgnore
     @Column(name="email_verified", nullable=false)
     private boolean emailVerified;
+
+
+    @JsonIgnore
+    @Column(name="email_verify_url")
+    private String emailVerifyLink;
 
 
     @Column(name="created_date", nullable=false)
@@ -44,14 +53,17 @@ public class Customer implements Serializable {
     private Date lastLoginDate;
 
 
+    @JsonIgnore
     @Column(name="phone_number")
     private String phoneNumber;
 
 
-    @OneToOne(mappedBy="customer")
+    @JsonIgnore
+    @OneToOne(mappedBy="customer", fetch=FetchType.EAGER)
     private Contract contract;
 
 
+    @JsonIgnore
     @OneToMany(mappedBy="customer", fetch=FetchType.EAGER)
     private List<Project> projectList;
 }

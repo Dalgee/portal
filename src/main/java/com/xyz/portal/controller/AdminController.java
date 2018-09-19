@@ -2,7 +2,6 @@ package com.xyz.portal.controller;
 
 import com.xyz.portal.domain.dto.AdminDTO;
 import com.xyz.portal.domain.entity.Admin;
-import com.xyz.portal.exception.AdminNotFoundException;
 import com.xyz.portal.service.AdminService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;

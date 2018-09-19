@@ -10,7 +10,7 @@ import java.io.Serializable;
 @Entity
 @Data
 @ToString
-@Table(name="admin")
+@Table(name="admin", uniqueConstraints={@UniqueConstraint(columnNames="login_id"), @UniqueConstraint(columnNames="email")})
 public class Admin implements Serializable {
 
     @Id
